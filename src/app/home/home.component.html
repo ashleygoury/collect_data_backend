@@ -1,0 +1,33 @@
+<FlexboxLayout class="page-wrapper">
+    <FlexboxLayout flexDirection="row">
+        <Button text="Start" (tap)="getStartLocation()"></Button>
+        <Button text="End" (tap)="getEndLocation()"></Button>
+    </FlexboxLayout>
+    <CheckBox text="Full year" checked="false" (checkedChange)="fullyear()"></CheckBox>
+    <FlexboxLayout flexDirection="row" height="50">
+        <ListPicker [items]="times" selectedIndex=0
+                    (selectedIndexChange)="onStartHourOne($event)"></ListPicker>
+        <ListPicker [items]="times" selectedIndex=0
+                    (selectedIndexChange)="onEndHourOne($event)"></ListPicker>
+    </FlexboxLayout>
+    <CheckBox text="Add new time slot" checked="false" (checkedChange)="addNewTime()"></CheckBox>
+    <FlexboxLayout flexDirection="row" *ngIf="newTimeSlot" height="50">
+        <ListPicker [items]="times" selectedIndex=null
+                    (selectedIndexChange)="onStartHourTwo($event)"></ListPicker>
+        <ListPicker [items]="times" selectedIndex=null
+                    (selectedIndexChange)="onEndHourTwo($event)"></ListPicker>
+    </FlexboxLayout>
+    <FlexboxLayout flexDirection="row" flexWrap="wrap">
+        <CheckBox text="Mon" checked="false" (checkedChange)="addDay(0)"></CheckBox>
+        <CheckBox text="Tues" checked="false" (checkedChange)="addDay(1)"></CheckBox>
+        <CheckBox text="Wed" checked="false" (checkedChange)="addDay(2)"></CheckBox>
+        <CheckBox text="Thurs" checked="false" (checkedChange)="addDay(3)"></CheckBox>
+        <CheckBox text="Fri" checked="false" (checkedChange)="addDay(4)"></CheckBox>
+        <CheckBox text="Sat" checked="false" (checkedChange)="addDay(5)"></CheckBox>
+        <CheckBox text="Sun" checked="false" (checkedChange)="addDay(6)"></CheckBox>
+    </FlexboxLayout>
+    <FlexboxLayout flexDirection="row">
+        <Button text="save" (tap)="save()"></Button>
+        <Button text="Reset" (tap)="reset()"></Button>
+    </FlexboxLayout>
+</FlexboxLayout>

@@ -1,0 +1,23 @@
+FlexboxLayout {
+    flex-direction: column;
+    horizontal-align: center;
+    align-items: center;
+}
+
+.page-wrapper {
+    background: linear-gradient(to bottom, #67B26F 0%, #4ca2cd 100%);
+}
+
+.page-wrapper * {
+    margin: 10;
+}
+
+Button {
+    height: 70;
+    width: 100;
+    background: linear-gradient(to bottom, #659999 0%, #f4791f 100%);
+}
+
+Button:highlighted {
+    background-color: greenyellow;
+}
