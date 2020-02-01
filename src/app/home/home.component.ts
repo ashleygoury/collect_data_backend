@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             "endLat": null,
             "endLng": null
         },
-        "allyear": false,
+        "allyear": null,
         "days": []
     };
 
@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
     }
 
     getStartLocation() {
+        this.points.allyear = false;
         let that = this;
         geolocation.getCurrentLocation({
             desiredAccuracy: Accuracy.high,
