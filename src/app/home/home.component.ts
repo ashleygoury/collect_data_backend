@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {EventData} from "tns-core-modules/data/observable";
 import {ListPicker} from "tns-core-modules/ui/list-picker";
 import {Page} from "tns-core-modules/ui/page";
@@ -15,6 +15,15 @@ import * as Toast from 'nativescript-toast';
 export class HomeComponent implements OnInit {
     times: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     newTimeSlot = false;
+    @ViewChild('CB1', {static:false}) mon: ElementRef;
+    @ViewChild('CB2', {static:false}) tue: ElementRef;
+    @ViewChild('CB3', {static:false}) wed: ElementRef;
+    @ViewChild('CB4', {static:false}) thu: ElementRef;
+    @ViewChild('CB5', {static:false}) fri: ElementRef;
+    @ViewChild('CB6', {static:false}) sat: ElementRef;
+    @ViewChild('CB7', {static:false}) sun: ElementRef;
+    @ViewChild('CB8', {static:false}) ful: ElementRef;
+    @ViewChild('CB9', {static:false}) add: ElementRef;
 
     points = {
         "start": {
@@ -25,7 +34,7 @@ export class HomeComponent implements OnInit {
             "endLat": null,
             "endLng": null
         },
-        "allyear": null,
+        "allyear": false,
         "days": []
     };
 
@@ -78,7 +87,18 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    checked() {
+        let checkedbox = [this.mon, this.tue, this.wed, this.thu, this.fri, this.sat, this.sun, this.ful, this.add];
+        for(let i = 0; i < checkedbox.length; i++) {
+            if(checkedbox[i].nativeElement.checked) {
+                checkedbox[i].nativeElement.toggle();
+            }
+        }
+    }
+
     reset() {
+        this.checked();
+        this.newTimeSlot = false;
         this.points.start.startLat = null;
         this.points.start.startLng = null;
         this.points.end.endLat = null;
@@ -88,7 +108,6 @@ export class HomeComponent implements OnInit {
         this.dayCheck.timeOne.timeFinishOne = null;
         this.dayCheck.timeTwo.timeStartTwo = null;
         this.dayCheck.timeTwo.timeFinishTwo = null;
-
     }
 
     save() {
